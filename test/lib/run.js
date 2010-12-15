@@ -3,7 +3,6 @@ load('test/lib/env.rhino.1.2.js',
         'test/lib/jspec/jspec.xhr.js',
         'test/lib/jquery.js',
         'test/lib/jspec/jspec.jquery.js',
-        'test/lib/formatters.js',
         'test/lib/loadFiles.js');
 
 var testDirectoryPath = arguments[0];
@@ -27,12 +26,13 @@ jQuery.each(tests, function(index, test) {
     }
 });
 
-var resultsFilePath = arguments[2]
+var resultsFile = arguments[2];
+load('test/lib/formatters.js');
 
 JSpec
 
         .run({reporter:function(results, options) {
-//            JSpec.reporters.jUnit(results, options);
+            JSpec.reporters.jUnit(results, options);
             JSpec.reporters.Terminal(results, options);
         }})
         .report()

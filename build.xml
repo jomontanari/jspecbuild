@@ -1,14 +1,18 @@
 <?xml version="1.0"?>
 <project basedir="." name="JSpecRunner" default="run">
 
+    <property name="report.dir" value="report" />
+
     <target name="run">
         <sequential>
+            <mkdir dir="${report.dir}" />
             <java jar="lib/js.jar" failonerror="true" fork="true">
                 <arg value="-opt"/>
                 <arg value="-1"/>
                 <arg value="test/lib/run.js"/>
                 <arg value="test/tests"/>
                 <arg value="src"/>
+                <arg value="${report.dir}/output.xml" />
             </java>
         </sequential>
     </target>

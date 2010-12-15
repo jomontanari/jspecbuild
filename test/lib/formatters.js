@@ -1,5 +1,17 @@
+/*
+  JSpec module which adds a new formatter (JSpec.formatters.jUnit) to generate an
+  xml document compatible with Hudson CI jUnit result browser.
+
+  Original: (c) 2009 Iv‡n -DrSlump- Montes <drslump _at_ pollinimini.net
+  Public Domain
+
+  Adjusted by Jo Cranford http://www.postposttechnical.com to write to file
+  instead of printing output. 
+*/
+importClass(java.io.FileWriter);
+
 JSpec.include({
-    'formatters': {
+    'reporters': {
         jUnit: function(results, options) {
             function callIterator(callback, a, b) {
                return callback.length == 1 ? callback(b) : callback(a, b)
@@ -72,8 +84,11 @@ JSpec.include({
                 return xml;
             }
 
-            print('<?xml version="1.0" encoding="utf-8"?>\n');
-            print(obj2xml(out));
+            var results = new File(resultsFile);
+            var file_writer = new FileWriter(results);
+            file_writer.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n");
+            file_writer.write(obj2xml(out));
+            file_writer.close();
         }
     }
 });
