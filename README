@@ -3,4 +3,6 @@ JSpec Build
 
 Basic framework of all the files needed to run JSpec from a build file (so that it can be run from CI)
 
-Forces the build to fail if the JS tests fail. 
+Forces the build to fail if the JS tests fail.
+
+More info: http://www.postposttechnical.com/2010/12/testing-javascript-with-jspec/ 
